@@ -11,6 +11,8 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+
+  bool _enable = false;
   File _image ;
   @override
   Widget build(BuildContext context) {
@@ -22,13 +24,13 @@ class _ProfilePageState extends State<ProfilePage> {
             onPressed: () {
               Navigator.pop(context);
             }),
-        title: Text('Edit Profile',textAlign: TextAlign.left,),
+        title: Text('Edit Profile',),
       ),
       backgroundColor: Colors.white,
       body: ListView(
         children: <Widget>[
           SizedBox(
-            height: 25.0,
+            height: 5.0,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -69,13 +71,35 @@ class _ProfilePageState extends State<ProfilePage> {
 
             ],
           ),
+          Row(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(left: 15,right: 20),
+                child: Text("Receive messages",style: TextStyle(
+                  color: Colors.blue[800],
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                ),),
+              ),
+              Container(
+                width: 200,
+                padding: EdgeInsets.only(left: 40),
+                child: SwitchListTile(value: _enable, onChanged: (bool value){
+                  setState(() {
+                    _enable = value ;
+                    print(value);
+                  });
+                }),
+              ),
+            ],
+          ),
           DisplayNameField(),
           DisplayRegNumField(),
           DisplaypasswordField(),
           DisplayNumPhoneField(),
-        InkWell(
+          InkWell(
          child:Container(
-          margin: EdgeInsets.only(left: 55,right: 55,top: 10),
+          margin: EdgeInsets.only(left: 55,right: 55,top: 2),
           height: 56.0,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
@@ -119,7 +143,7 @@ class _ProfilePageState extends State<ProfilePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
-              padding: EdgeInsets.only(top: 25.0,left: 15,bottom: 5),
+              padding: EdgeInsets.only(left: 15,bottom: 5),
               child: Text(
                 "User Name",
                 style: TextStyle(color: Colors.blue[800],fontSize: 18,fontWeight: FontWeight.bold),

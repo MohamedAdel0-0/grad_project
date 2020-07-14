@@ -48,7 +48,6 @@ class interest extends State <interests> {
           ),
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-
           child: ListView(
             children: [
               SizedBox(height: 30,),
