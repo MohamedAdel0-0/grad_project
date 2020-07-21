@@ -1,4 +1,4 @@
-import 'Topics.dart';
+import 'Topic.dart';
 import 'User.dart';
 
 class UserInterest {

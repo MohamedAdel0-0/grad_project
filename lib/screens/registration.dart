@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:grad_project/classes/RESTClient.dart';
 import 'package:grad_project/screens/choose.dart';
 import 'interests.dart';
 import 'home.dart';
@@ -132,6 +133,8 @@ class _LoginPageState extends State<LoginPage>{
         ),
       ),
       onTap: (){
+        RESTClient.getAllTopics();
+
         Navigator.of(context).pop(false);
         Navigator.push(context, MaterialPageRoute(builder: (context){
           return interests();
