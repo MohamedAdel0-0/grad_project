@@ -20,19 +20,27 @@ class Topic {
       this.subtopics});
 
   factory Topic.fromJson(Map<String, dynamic> json) {
-    return Topic(
-      id: json['id'] as int,
-      name: json['name'] as String,
-      interestedUsers: (json['interested_users'] as List)
+    Topic topic = Topic();
+    if (json.containsKey('id'))
+      topic.id = json['id'] as int;
+    if (json.containsKey('name'))
+      topic.name = json['name'] as String;
+    if (json.containsKey('parent_topic'))
+      topic.parentTopic = Topic.fromJson(json['parent_topic']);
+    if(json.containsKey('interested_users'))
+      topic.interestedUsers = (json['interested_users'] as List)
           .map((dynamic item) => User.fromJson(item))
-          .toList(),
-      relatedPosts: (json['related_posts'] as List)
+          .toList();
+    if(json.containsKey('related_posts'))
+      topic.relatedPosts = (json['related_posts'] as List)
           .map((dynamic item) => Post.fromJson(item))
-          .toList(),
-      subtopics: (json['subtopics'] as List)
+          .toList();
+    if(json.containsKey('subtopics'))
+      topic.subtopics = (json['subtopics'] as List)
           .map((dynamic item) => Topic.fromJson(item))
-          .toList(),
-    );
+          .toList();
+
+    return topic;
   }
 
   Map<String, dynamic> toJson() {
@@ -40,10 +48,11 @@ class Topic {
 
     if (id != null) map['id'] = id;
     if (name != null) map['name'] = name;
-    if(parentTopic != null) map['parent_topic'] = parentTopic.toJson();
-    if(interestedUsers != null) map['interested_users'] = jsonEncode(interestedUsers);
-    if(relatedPosts != null) map['related_posts'] = jsonEncode(relatedPosts);
-    if(subtopics != null) map['subtopics'] = jsonEncode(subtopics);
+    if (parentTopic != null) map['parent_topic'] = parentTopic.toJson();
+    if (interestedUsers != null)
+      map['interested_users'] = jsonEncode(interestedUsers);
+    if (relatedPosts != null) map['related_posts'] = jsonEncode(relatedPosts);
+    if (subtopics != null) map['subtopics'] = jsonEncode(subtopics);
 
     return map;
   }

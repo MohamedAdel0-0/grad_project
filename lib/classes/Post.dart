@@ -24,20 +24,29 @@ class Post {
         this.comments});
 
   factory Post.fromJson(Map<String, dynamic> json) {
-    return Post(
-      id: json['id'] as int,
-      title: json['title'] as String,
-      body: json['body'] as String,
-      timestamp: json['timestamp'] as DateTime,
-      score: json['score'] as int,
-      author: User.fromJson(json['author']),
-      topics: (json['interested_users'] as List)
+    Post post = Post();
+    if(json.containsKey('id'))
+      post.id = json['id'] as int;
+    if(json.containsKey('title'))
+      post.title = json['title'] as String;
+    if(json.containsKey('body'))
+      post.body = json['body'] as String;
+    if(json.containsKey('timestamp'))
+      post.timestamp = json['timestamp'] as DateTime;
+    if(json.containsKey('score'))
+      post.score =  json['score'] as int;
+    if(json.containsKey('author'))
+      post.author = User.fromJson(json['author']);
+    if(json.containsKey('topics'))
+      post.topics = (json['topics'] as List)
           .map((dynamic item) => Topic.fromJson(item))
-          .toList(),
-      comments: (json['related_posts'] as List)
+          .toList();
+    if(json.containsKey('comments'))
+      post.comments = (json['comments'] as List)
           .map((dynamic item) => Comment.fromJson(item))
-          .toList(),
-    );
+          .toList();
+
+    return post;
   }
 
   Map<String, dynamic> toJson() {

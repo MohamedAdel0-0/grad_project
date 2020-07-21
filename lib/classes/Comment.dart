@@ -16,13 +16,19 @@ class Comment {
         this.parentPost});
 
   factory Comment.fromJson(Map<String, dynamic> json) {
-    return Comment(
-      id: json['id'] as int,
-      body: json['body'] as String,
-      timestamp: json['timestamp'] as DateTime,
-      author: User.fromJson(json['author']),
-      parentPost: Post.fromJson(json['parent_post']),
-    );
+    Comment comment = Comment();
+    if(json.containsKey('id'))
+      comment.id = json['id'] as int;
+    if(json.containsKey('body'))
+      comment.body = json['body'] as String;
+    if(json.containsKey('timestamp'))
+      comment.timestamp = json['timestamp'] as DateTime;
+    if(json.containsKey('author'))
+      comment.author = User.fromJson(json['author']);
+    if(json.containsKey('parent_post'))
+      comment.parentPost = Post.fromJson(json['parent_post']);
+
+    return comment;
   }
 
   Map<String, dynamic> toJson() {

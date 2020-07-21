@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'Department.dart';
 
 class College {
@@ -10,11 +9,12 @@ class College {
   College({this.id, this.name, this.departments});
 
   factory College.fromJson(Map<String, dynamic> json) {
-    return College(
-      id: json['id'] as int,
-      name: json['name'] as String,
-      departments: (json['departments'] as List).map((dynamic item) => Department.fromJson(item)).toList()
-    );
+    College college = College();
+    if(json.containsKey('id')) college.id = json['id'] as int;
+    if(json.containsKey('name')) college.name = json['name'] as String;
+    if(json.containsKey('departments')) college.departments = (json['departments'] as List).map((dynamic item) => Department.fromJson(item)).toList();
+
+    return college;
   }
 
   Map<String, dynamic> toJson() {

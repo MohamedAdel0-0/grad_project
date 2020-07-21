@@ -8,10 +8,15 @@ class Department {
   Department({this.id, this.name, this.college});
 
   factory Department.fromJson(Map<String, dynamic> json) {
-    return Department(
-      id: json['id'] as int,
-      name: json['name'] as String,
-    );
+    Department department = Department();
+    if(json.containsKey('id'))
+      department.id = json['id'] as int;
+    if(json.containsKey('name'))
+      department.name = json['name'] as String;
+    if(json.containsKey('college'))
+      department.college = College.fromJson(json['college']);
+
+    return department;
   }
 
   Map<String, dynamic> toJson() {

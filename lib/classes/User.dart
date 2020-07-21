@@ -20,19 +20,31 @@ class User {
     User({this.id, this.name, this.email, this.token, this.registrationNumber, this.password, this.image, this.messagesAllowed ,this.interests, this.college, this.department});
 
     factory User.fromJson(Map<String, dynamic> json) {
-        return User(
-            id: json['id'] as int,
-            name: json['name'] as String,
-            email: json['email'] as String,
-            token: json['token'] as String,
-            registrationNumber: json['registration_number'] as int,
-            password: json['password'] as String,
-            image: json['image'] as String,
-            messagesAllowed: json['messages_allowed'] as bool,
-            interests: (json['interests'] as List).map((dynamic item) => Topic.fromJson(item)).toList(),
-            college: College.fromJson(json['college']),
-            department: Department.fromJson(json['department']),
-        );
+        User user = User();
+        if(json.containsKey('id'))
+            user.id = json['id'] as int;
+        if(json.containsKey('name'))
+            user.name = json['name'] as String;
+        if(json.containsKey('email'))
+            user.email = json['email'] as String;
+        if(json.containsKey('token'))
+            user.token = json['token'] as String;
+        if(json.containsKey('registration_number'))
+            user.registrationNumber = json['registration_number'] as int;
+        if(json.containsKey('password'))
+            user.password = json['password'] as String;
+        if(json.containsKey('image'))
+            user.image =  json['image'] as String;
+        if(json.containsKey('messages_allowed'))
+            user.messagesAllowed = json['messages_allowed'] as bool;
+        if(json.containsKey('interests'))
+            user.interests = (json['interests'] as List).map((dynamic item) => Topic.fromJson(item)).toList();
+        if(json.containsKey('college'))
+            user.college = College.fromJson(json['college']);
+        if(json.containsKey('departments'))
+            user.department = Department.fromJson(json['department']);
+
+       return user;
     }
 
 
