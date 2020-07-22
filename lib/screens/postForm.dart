@@ -42,9 +42,7 @@ int inc (int n){
                       height: 50.0,
                       child: (userImg!=null)?Image.file(userImg,
                         fit: BoxFit.fill,)
-                          :Image.network(
-                        "https://images.unsplash.com/photo-1502164980785-f8aa41d53611?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-                        fit: BoxFit.fill,
+                          :Image(image: AssetImage("images/user1.png")
                       ),
                     ),
                   ),

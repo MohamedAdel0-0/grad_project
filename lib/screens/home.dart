@@ -78,7 +78,7 @@ class home extends StatelessWidget {
                       ),
                      Center(
                        child: Container(
-                        height: 554,
+                        height: 556,
                         width: 340,
                         child: ListView(
                           children: <Widget>[
@@ -123,7 +123,7 @@ class home extends StatelessWidget {
                               ),
                               onTap: (){
                                 Navigator.push(context, MaterialPageRoute(builder: (context){
-                                  return add_post();
+                                  return addpost();
                                 }));
                               },
                             ),

@@ -32,32 +32,30 @@ class _ProfilePageState extends State<ProfilePage> {
           SizedBox(
             height: 5.0,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Stack(
+           // mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
 
               Padding(
-                padding: EdgeInsets.only(left: 50),
+                padding: EdgeInsets.only(left: 120),
                 child: CircleAvatar(
                   radius: 70,
                   backgroundColor: Colors.blueAccent,
                   child: ClipOval(
                     child: new SizedBox(
-                      width: 120.0,
-                      height: 120.0,
+                      width: 128.0,
+                      height: 128.0,
                       child: (_image!=null)?Image.file(
                         _image,
                         fit: BoxFit.fill,
-                      ):Image.network(
-                        "https://images.unsplash.com/photo-1502164980785-f8aa41d53611?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-                        fit: BoxFit.fill,
+                      ):Image(image: AssetImage("images/user1.png")
                       ),
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 99.0,right: 20),
+                padding: EdgeInsets.only(top: 100.0,left: 239),
                 child: IconButton(
                   icon: Icon(Icons.add_a_photo,
                     size: 30.0,
