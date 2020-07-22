@@ -50,7 +50,7 @@ class RESTClient {
     );
 
     Map jsonResponse = json.decode(response.body);
-    print(jsonEncode(user));
+    print(jsonResponse);
     if (response.statusCode == 201)
       return User.fromJson(jsonResponse);
     else if (response.statusCode == 400) {
