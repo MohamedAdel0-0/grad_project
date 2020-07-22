@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'home.dart';
 import 'dart:io';
-import 'package:path/path.dart';
+
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -129,8 +129,6 @@ class _ProfilePageState extends State<ProfilePage> {
           }));
         },
       ),
-
-
         ],
       ),
     );

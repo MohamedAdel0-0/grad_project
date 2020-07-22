@@ -25,8 +25,8 @@ class interest extends State <interests> {
   bool isButtonPressed11 = true;
   bool isButtonPressed12 = true;
 
-  var _items0 = ['c1        ','c2','c3','c4','c5','c6','c7','c8','c9','c10'] ;
-  var _selected0 = 'c1        ';
+  var _items0 = ['b1        ','b2','b3','b4','b5','b6','b7','b8','b9','b10'] ;
+  var _selected0 = 'b1        ';
 
   var _items1= ['semester 1','semester 2','semester 3','semester 4','semester 5','semester 6',
     'semester 7','semester 8','semester 9','semester 10'] ;
@@ -70,7 +70,7 @@ class interest extends State <interests> {
                   child: Center(
                     child: Column(
                       children: <Widget>[
-                        Text(" Choose your Collage ",style: TextStyle(fontSize: 24,color: Colors.blue[900],),),
+                        Text(" Choose your branch ",style: TextStyle(fontSize: 24,color: Colors.blue[900],),),
                         DropdownButton(
                           items: _items0.map((String dropdownitem){
                             return DropdownMenuItem<String> (
