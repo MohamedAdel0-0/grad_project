@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:intl/intl.dart';
 
 
 
@@ -10,7 +11,8 @@ class post extends StatelessWidget {
   final String userName ;
   final File userImg ;
   final String title ;
-  var date = new DateTime.now().toString();
+  var date = new DateTime.now();
+  final DateFormat dateFormat = DateFormat('yyyy-MM-dd HH:mm');
    int vote = 0;
 
 
@@ -26,6 +28,7 @@ int inc (int n){
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(left: 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -66,7 +69,7 @@ int inc (int n){
                     ),
                     Container(
                       //padding: EdgeInsets.only(left: 12),
-                      child: Text(date,style:TextStyle(
+                      child: Text(dateFormat.format(date),style:TextStyle(
                         color: Colors.grey[900],
                         fontSize: 14
                       ),),
