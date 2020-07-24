@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:grad_project/classes/RESTClient.dart';
-import 'package:grad_project/screens/choose.dart';
-import 'interests.dart';
-import 'home.dart';
+
+
 
 class reg extends StatelessWidget {
   @override

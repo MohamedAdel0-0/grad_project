@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grad_project/classes/RESTClient.dart';
 import 'screens/welcome.dart';
-import 'FadeAnimatiopn.dart';
+import 'screens/FadeAnimatiopn.dart';
 import 'package:page_transition/page_transition.dart';
 import 'dart:async';
 
