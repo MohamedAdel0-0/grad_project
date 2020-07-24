@@ -1,4 +1,6 @@
 import 'package:grad_project/classes/Comment.dart';
+import 'package:grad_project/classes/Filter.dart';
+import 'package:grad_project/classes/PostVote.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'Post.dart';
@@ -168,4 +170,55 @@ class RESTClient {
 
     return null;
   }
+
+  static Future<PostVote> addPostVote(PostVote postVote) async {
+    final response = await http.post(
+      Uri.encodeFull(SERVER_URL + 'api/posts_votes'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(postVote),
+    );
+
+    Map jsonResponse = json.decode(response.body);
+    print(jsonResponse);
+
+    return null;
+  }
+
+  static Future<List<Post>> getUserTimeline(User user, Duration duration) async {
+    List<Filter> filters = List();
+    for(int i = 0; i < user.interests.length; i++) {
+      Topic t = user.interests[i];
+      Filter f = Filter(name: "topics", operator: "any", value: Filter(name: "id", operator: "eq", value: t.id));
+      filters.add(f);
+    }
+    DateTime startDate = DateTime.now().subtract(duration);
+    filters.add(Filter(name: "timestamp", operator: "gte", value: startDate.toIso8601String()));
+    
+    Map<String, dynamic> queryFilters = Map();
+    queryFilters['filters'] = filters;
+
+    String query = '?q=' + jsonEncode(queryFilters);
+
+    var response = await http.get(Uri.encodeFull(SERVER_URL + 'api/posts' + query));
+    print("Query: "+ query);
+    print("response   " + response.body);
+
+    if (response.statusCode == 200) {
+      List<dynamic> objects = jsonDecode(response.body)['objects'];
+      List<Post> posts =
+      objects.map((dynamic item) => Post.fromJson(item)).toList();
+
+      return posts;
+      //return colleges;
+    } else if (response.statusCode == 401) {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      print('Failed to login');
+      throw Exception('Failed to login');
+    }
+
+    return null;
+  }
+
+  //localhost:5000/api/posts?q={"filters":[{"or":[{"name":"id","op":"gt","val":0},{"name":"author_id","op":"gt","val":0}]}]}
 }

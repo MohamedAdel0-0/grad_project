@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:grad_project/classes/PostVote.dart';
+
 import 'Topic.dart';
 import 'User.dart';
 import 'Comment.dart';
@@ -12,6 +14,7 @@ class Post {
   User author;
   List<Topic> topics;
   List<Comment> comments;
+  List<PostVote> votes;
 
   Post(
       {this.id,
@@ -21,7 +24,8 @@ class Post {
         this.score,
         this.author,
         this.topics,
-        this.comments});
+        this.comments,
+        this.votes});
 
   factory Post.fromJson(Map<String, dynamic> json) {
     Post post = Post();
@@ -32,7 +36,7 @@ class Post {
     if(json.containsKey('body'))
       post.body = json['body'] as String;
     if(json.containsKey('timestamp'))
-      post.timestamp = json['timestamp'] as DateTime;
+      post.timestamp = DateTime.parse(json['timestamp'] as String);
     if(json.containsKey('score'))
       post.score =  json['score'] as int;
     if(json.containsKey('author'))
@@ -45,6 +49,17 @@ class Post {
       post.comments = (json['comments'] as List)
           .map((dynamic item) => Comment.fromJson(item))
           .toList();
+    if(json.containsKey('votes'))
+    {
+      post.votes = (json['votes'] as List)
+          .map((dynamic item) => PostVote.fromJson(item))
+          .toList();
+
+      post.score = 0;
+      post.votes.forEach((PostVote v) => post.score += v.vote);
+
+    }
+
 
     return post;
   }
@@ -56,10 +71,10 @@ class Post {
     if (title != null) map['title'] = title;
     if(body != null) map['body'] = body;
     if(timestamp != null) map['timestamp'] = timestamp;
-    if(score != null) map['score'] = score;
     if(author != null) map['author'] = author.toJson();
     if(topics != null) map['topics'] = topics.map((Topic t) => t.toJson()).toList();
     if(comments != null) map['comments'] = comments.map((Comment c) => c.toJson()).toList();
+    if(votes != null) map['votes'] = votes.map((PostVote v) => v.toJson()).toList();
 
     return map;
   }
