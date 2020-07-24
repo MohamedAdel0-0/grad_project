@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'home.dart';
 import 'dart:io';
-import 'package:path/path.dart';
+
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -11,6 +11,8 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+
+  bool _enable = false;
   File _image ;
   @override
   Widget build(BuildContext context) {
@@ -22,40 +24,38 @@ class _ProfilePageState extends State<ProfilePage> {
             onPressed: () {
               Navigator.pop(context);
             }),
-        title: Text('Edit Profile',textAlign: TextAlign.left,),
+        title: Text('Edit Profile',),
       ),
       backgroundColor: Colors.white,
       body: ListView(
         children: <Widget>[
           SizedBox(
-            height: 25.0,
+            height: 5.0,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Stack(
+           // mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
 
               Padding(
-                padding: EdgeInsets.only(left: 50),
+                padding: EdgeInsets.only(left: 120),
                 child: CircleAvatar(
                   radius: 70,
                   backgroundColor: Colors.blueAccent,
                   child: ClipOval(
                     child: new SizedBox(
-                      width: 120.0,
-                      height: 120.0,
+                      width: 128.0,
+                      height: 128.0,
                       child: (_image!=null)?Image.file(
                         _image,
                         fit: BoxFit.fill,
-                      ):Image.network(
-                        "https://images.unsplash.com/photo-1502164980785-f8aa41d53611?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-                        fit: BoxFit.fill,
+                      ):Image(image: AssetImage("images/user1.png")
                       ),
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 99.0,right: 20),
+                padding: EdgeInsets.only(top: 100.0,left: 239),
                 child: IconButton(
                   icon: Icon(Icons.add_a_photo,
                     size: 30.0,
@@ -69,13 +69,35 @@ class _ProfilePageState extends State<ProfilePage> {
 
             ],
           ),
+          Row(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(left: 15,right: 20),
+                child: Text("Receive messages",style: TextStyle(
+                  color: Colors.blue[800],
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                ),),
+              ),
+              Container(
+                width: 200,
+                padding: EdgeInsets.only(left: 40),
+                child: SwitchListTile(value: _enable, onChanged: (bool value){
+                  setState(() {
+                    _enable = value ;
+                    print(value);
+                  });
+                }),
+              ),
+            ],
+          ),
           DisplayNameField(),
           DisplayRegNumField(),
           DisplaypasswordField(),
           DisplayNumPhoneField(),
-        InkWell(
+          InkWell(
          child:Container(
-          margin: EdgeInsets.only(left: 55,right: 55,top: 10),
+          margin: EdgeInsets.only(left: 55,right: 55,top: 2),
           height: 56.0,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
@@ -105,8 +127,6 @@ class _ProfilePageState extends State<ProfilePage> {
           }));
         },
       ),
-
-
         ],
       ),
     );
@@ -119,7 +139,7 @@ class _ProfilePageState extends State<ProfilePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
-              padding: EdgeInsets.only(top: 25.0,left: 15,bottom: 5),
+              padding: EdgeInsets.only(left: 15,bottom: 5),
               child: Text(
                 "User Name",
                 style: TextStyle(color: Colors.blue[800],fontSize: 18,fontWeight: FontWeight.bold),

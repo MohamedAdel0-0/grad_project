@@ -1,6 +1,7 @@
-
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:grad_project/screens/interests.dart';
+import 'package:grad_project/screens/profile.dart';
 import 'sideBarItem.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -68,15 +69,14 @@ class _slidebarState extends State<slide_bar> with SingleTickerProviderStateMixi
 
           child: Row(
             children: <Widget>[
-
               Expanded(
                 child: Container(
 
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                         colors: [
-                          Colors.blue[900],
-                          Colors.blue[600],
+                          Colors.blue[100],
+                          Colors.blue[200],
                           Colors.blue[400],
                           Colors.blue[600],
                           Colors.blue[900],
@@ -89,17 +89,31 @@ class _slidebarState extends State<slide_bar> with SingleTickerProviderStateMixi
                   child: Column(
                     children: <Widget>[
 
-                      SizedBox(height: 40,),
-
+                      SizedBox(height: 30,),
+                      InkWell(
+                        child: Container(
+                          padding: EdgeInsets.only(left: 270,),
+                          child: Icon(
+                            Icons.edit,
+                            color: Colors.grey[800],
+                            size: 24,
+                          ),
+                        ),
+                        onTap:(){
+                          Navigator.push(context, MaterialPageRoute(builder: (context){
+                            return ProfilePage();
+                          }));
+                        },
+                      ),
                       ListTile(
                         title: Text(
                           "Name",
-                          style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w800),
+                          style: TextStyle(color: Colors.grey[800], fontSize: 30, fontWeight: FontWeight.w800),
                         ),
                         subtitle: Text(
                           "email.student.edu",
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.grey[800],
                             fontSize: 18,
                           ),
                         ),
@@ -140,11 +154,13 @@ class _slidebarState extends State<slide_bar> with SingleTickerProviderStateMixi
                         icon: Icons.check_circle_outline,
                         title: "My Interests",
                         onTap: () {
-
+                          Navigator.push(context, MaterialPageRoute(builder: (context){
+                            return interests();
+                          }));
                         },
                       ),
                       MenuItem(
-                        icon: Icons.today,
+                        icon: Icons.calendar_today,
                         title: "My Gaps",
                         onTap: () {
 
@@ -179,7 +195,7 @@ class _slidebarState extends State<slide_bar> with SingleTickerProviderStateMixi
                 ),
               ),
               Align(
-                alignment: Alignment(0, -0.9999),
+                alignment: Alignment(0, -1),
                 child: GestureDetector(
                   onTap: (){
                       oniconpressed();
@@ -189,13 +205,13 @@ class _slidebarState extends State<slide_bar> with SingleTickerProviderStateMixi
                     child: Container(
                       width: 35,
                       height: 100,
-                      color: Colors.blue[700],
+                      color: Colors.blue[200],
                       alignment: Alignment.center,
                       child: AnimatedIcon(
                         icon: AnimatedIcons.menu_arrow,
                         progress: _animationController.view,
                         color: Colors.white,
-                        size: 30,
+                        size: 28,
                       ),
                     ),
                   ),

@@ -27,6 +27,7 @@ dependencies:
   rxdart: ^0.18.0
   font_awesome_flutter: ^8.2.0
   image_picker: ^0.5.3+1
+  intl: ^0.15.8
   http: ^0.12.1
 
 
@@ -58,6 +59,7 @@ flutter:
     - images/aast.png
     - images/xx.png
     - images/user.png
+    - images/user1.png
     - images/one.png
     - images/loginBG.jpg
     - images/intern.jpg
