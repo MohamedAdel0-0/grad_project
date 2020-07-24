@@ -185,19 +185,24 @@ class RESTClient {
   }
 
   static Future<List<Post>> getUserTimeline(User user, Duration duration) async {
-    List<Filter> filters = List();
+    List<Filter> interestsFilters = List();
     for(int i = 0; i < user.interests.length; i++) {
       Topic t = user.interests[i];
       Filter f = Filter(name: "topics", operator: "any", value: Filter(name: "id", operator: "eq", value: t.id));
-      filters.add(f);
+      interestsFilters.add(f);
     }
     DateTime startDate = DateTime.now().subtract(duration);
-    filters.add(Filter(name: "timestamp", operator: "gte", value: startDate.toIso8601String()));
-    
-    Map<String, dynamic> queryFilters = Map();
-    queryFilters['filters'] = filters;
+    Map<String, dynamic> interestsFiltersMap = Map();
+    interestsFiltersMap['or'] = interestsFilters;
 
-    String query = '?q=' + jsonEncode(queryFilters);
+    List<dynamic> queryFilters = List();
+    queryFilters.add(interestsFiltersMap);
+    queryFilters.add(Filter(name: "timestamp", operator: "gte", value: startDate.toIso8601String()));
+    
+    Map<String, dynamic> queryFiltersMap = Map();
+    queryFiltersMap['filters'] = queryFilters;
+
+    String query = '?q=' + jsonEncode(queryFiltersMap);
 
     var response = await http.get(Uri.encodeFull(SERVER_URL + 'api/posts' + query));
     print("Query: "+ query);
@@ -208,6 +213,7 @@ class RESTClient {
       List<Post> posts =
       objects.map((dynamic item) => Post.fromJson(item)).toList();
 
+      print("Length: " + posts.length.toString());
       return posts;
       //return colleges;
     } else if (response.statusCode == 401) {

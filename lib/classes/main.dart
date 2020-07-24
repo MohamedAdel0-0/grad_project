@@ -13,7 +13,7 @@ import 'User.dart';
 
 
 void main()  {
-	RESTClient.addTopic(Topic(name:"Topic3"));
+	/*RESTClient.addTopic(Topic(name:"Topic3"));
 	RESTClient.addDepartment(Department(name:"CS"));
 	List<Department> departments = new List();
 	departments.add(Department(id:1));
@@ -41,7 +41,12 @@ void main()  {
 
 	interests.add(Topic(id:1));
 	RESTClient.getUserTimeline(u, Duration(hours: 24));
-	RESTClient.getUserTimeline(u, Duration(days: 7));
+	RESTClient.getUserTimeline(u, Duration(days: 7));*/
+	List<Topic> interests = new List();
+	interests.add(Topic(id:1));
+	interests.add(Topic(id:2));
+	User u = User(interests: interests);
+
 	RESTClient.getUserTimeline(u, Duration(days: 365));
 
 }
