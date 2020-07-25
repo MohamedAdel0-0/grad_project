@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grad_project/classes/RESTClient.dart';
 import 'screens/welcome.dart';
 import 'screens/FadeAnimatiopn.dart';
 import 'package:page_transition/page_transition.dart';
@@ -23,7 +24,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
 
   @override
   void initState() {
-
     super.initState();
 
     Future.delayed(
