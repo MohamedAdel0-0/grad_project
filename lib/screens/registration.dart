@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'interests.dart';
+
 
 
 class reg extends StatelessWidget {
@@ -131,7 +133,8 @@ class _LoginPageState extends State<LoginPage>{
         ),
       ),
       onTap: (){
-        RESTClient.getAllTopics();
+
+        //RESTClient.getAllTopics();
 
         Navigator.of(context).pop(false);
         Navigator.push(context, MaterialPageRoute(builder: (context){

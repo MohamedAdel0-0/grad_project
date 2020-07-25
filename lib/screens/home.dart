@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:grad_project/screens/addmaterial.dart';
 import 'package:grad_project/screens/addpost.dart';
+import 'package:grad_project/screens/guide_me.dart';
 import 'package:grad_project/screens/newmeeting.dart';
 import 'slide_bar.dart';
 import 'postForm.dart';
@@ -72,7 +73,9 @@ class home extends StatelessWidget {
                                 color: Colors.blue,)
                           ),
                           onPressed: () {
-
+                            Navigator.push(context, MaterialPageRoute(builder: (context){
+                              return guide_me();
+                            }));
                           },
                         ),
                       ),
@@ -83,11 +86,11 @@ class home extends StatelessWidget {
                         child: ListView(
                           children: <Widget>[
 
-                            post("userName", null, "post body............"),
-                            post("userName2", null, "post body2............"),
-                            post("userName3", null, "post body3............"),
-                            post("userName4", null, "post body4............"),
-                            post("userName5", null, "post body5............"),
+                            post("userName", null, "post body............",2),
+                            post("userName2", null, "post body2............",3),
+                            post("userName3", null, "post body3............",4),
+                            post("userName4", null, "post body4............",1),
+                            post("userName5", null, "post body5............",2),
                             ],
                         ),
                        ),

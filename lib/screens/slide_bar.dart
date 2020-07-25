@@ -136,16 +136,18 @@ class _slidebarState extends State<slide_bar> with SingleTickerProviderStateMixi
                         endIndent: 32,
                       ),
 
+
                       MenuItem(
-                        icon: Icons.group,
-                        title: "My Groups",
+                        icon: Icons.assignment,
+                        title: "My Material",
                         onTap: () {
 
                         },
                       ),
+
                       MenuItem(
-                        icon: Icons.assignment,
-                        title: "My Material",
+                        icon: Icons.local_library,
+                        title: "My Meetings",
                         onTap: () {
 
                         },
@@ -166,13 +168,7 @@ class _slidebarState extends State<slide_bar> with SingleTickerProviderStateMixi
 
                         },
                       ),
-                      MenuItem(
-                        icon: Icons.local_library,
-                        title: "My Meetings",
-                        onTap: () {
 
-                        },
-                      ),
                       Divider(
                         height: 64,
                         thickness: 0.7,
@@ -180,7 +176,9 @@ class _slidebarState extends State<slide_bar> with SingleTickerProviderStateMixi
                         indent: 32,
                         endIndent: 32,
                       ),
-
+                      SizedBox(
+                        height: 15,
+                      ),
                       MenuItem(
                         icon: Icons.exit_to_app,
                         title: "Logout",

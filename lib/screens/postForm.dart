@@ -11,12 +11,13 @@ class post extends StatelessWidget {
   final String userName ;
   final File userImg ;
   final String title ;
+  int v ;
   var date = new DateTime.now();
   final DateFormat dateFormat = DateFormat('yyyy-MM-dd HH:mm');
-   int vote = 0;
+   int vote ;
 
 
-  post(this.userName, this.userImg, this.title);
+  post(this.userName, this.userImg, this.title,this.vote);
 
 int inc (int n){
   return n++ ;
@@ -80,6 +81,7 @@ int inc (int n){
             ],
           ),
           Container(
+
             margin: EdgeInsets.only(top: 10,left: 30,bottom: 15),
 
             child: Text(title,style: TextStyle(
@@ -102,7 +104,7 @@ class voting extends StatefulWidget {
 
 class _posttState extends State<voting> {
 
-   int vote = 0;
+   int vote ;
 
   @override
   Widget build(BuildContext context) {

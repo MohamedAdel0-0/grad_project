@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'forgetpss.dart';
 import 'home.dart';
@@ -163,12 +165,36 @@ class _LoginPageState extends State<LoginPage>{
         ),
       ),
       child: Center(
-//      do on tap
         child: Text("LOG IN", style: TextStyle(color: Colors.white, fontSize: 24.0,fontWeight: FontWeight.bold),
         ),
        ),
       ),
       onTap: (){
+
+//        User
+//        var response = await http.post(
+//          Uri.encodeFull(SERVER_URL + 'api/login'),
+//          headers: <String, String>{
+//            'Content-Type': 'application/json; charset=UTF-8',
+//            'Accept': 'application/json'
+//          },
+//          body: jsonEncode(<String, String>{
+//            'email': user.email,
+//            'password': user.password,
+//          }),
+//        );
+//
+//        print(response.body);
+//
+//        if (response.statusCode == 200) {
+//          User user = User.fromJson(json.decode(response.body));
+//          return user;
+//        } else if (response.statusCode == 401) {
+//          // If the server did not return a 200 OK response,
+//          // then throw an exception.
+//          print('Failed to login');
+//          throw Exception('Failed to login');
+//        }
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
           return home();
         }));
