@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:grad_project/classes/RESTClient.dart';
+import 'package:grad_project/classes/Post.dart';
 import 'package:grad_project/screens/addmaterial.dart';
 import 'package:grad_project/screens/addpost.dart';
 import 'package:grad_project/screens/guide_me.dart';
@@ -11,6 +13,9 @@ import 'postForm.dart';
 
 
 class home extends StatelessWidget {
+
+  
+
   @override
   Widget build(BuildContext context) {
 
@@ -38,7 +43,12 @@ class home extends StatelessWidget {
             );
           });
     }
-
+    List<post> posts;
+    for(int i = 0; i < RESTClient.timelinePosts.length; i++) { 
+      Post p = RESTClient.timelinePosts[i];
+      posts.add(post(p.author.name, null, p.title, p.score));
+    }
+      
     return  Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blue[200],
@@ -84,14 +94,15 @@ class home extends StatelessWidget {
                         height: 556,
                         width: 340,
                         child: ListView(
-                          children: <Widget>[
-
+                          children: posts /* <Widget>[
+                            
+                           
                             post("userName", null, "post body............",2),
                             post("userName2", null, "post body2............",3),
                             post("userName3", null, "post body3............",4),
                             post("userName4", null, "post body4............",1),
                             post("userName5", null, "post body5............",2),
-                            ],
+                            ], */
                         ),
                        ),
                      ),

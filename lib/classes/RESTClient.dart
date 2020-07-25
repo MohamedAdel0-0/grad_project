@@ -11,12 +11,13 @@ import 'Department.dart';
 
 class RESTClient {
   static const SERVER_URL = 'http://10.0.2.2:5000/';
-
-  static List<College> colleges;
   static User currentUser;
-
+  static List<College> colleges;
+  static List<Post> timelinePosts;
+  
+  
   static void login(User user) async {
-    var response = await http.post(
+    /* var response = await http.post(
       Uri.encodeFull(SERVER_URL + 'api/login'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -40,7 +41,37 @@ class RESTClient {
       throw Exception('Failed to login');
     }
 
-    return null;
+    return null; */
+
+    
+    
+
+    List<Filter> queryFilters = List();
+    queryFilters.add(Filter(name: "email", operator: "eq", value: user.email));
+    queryFilters.add(Filter(name: "password", operator: "eq", value: user.password));    
+
+    Map<String, dynamic> queryFiltersMap = Map();
+    queryFiltersMap['filters'] = queryFilters;
+
+    String query = '?q=' + jsonEncode(queryFiltersMap);
+
+    var response = await http.get(Uri.encodeFull(SERVER_URL + 'api/users' + query));
+    print("Query: "+ query);
+    print("response   " + response.body);
+
+    if (response.statusCode == 200) {
+      List<dynamic> objects = jsonDecode(response.body)['objects'];
+      List<User> users =
+      objects.map((dynamic item) => User.fromJson(item)).toList();
+
+      currentUser = users[0];
+      //return colleges;
+    } else if (response.statusCode == 401) {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      print('Failed to login');
+      throw Exception('Failed to login');
+    }
   }
 
   static void register(User user) async {
@@ -186,10 +217,10 @@ class RESTClient {
     return null;
   }
 
-  static Future<List<Post>> getUserTimeline(User user, Duration duration) async {
+  static void getUserTimeline(Duration duration) async {
     List<Filter> interestsFilters = List();
-    for(int i = 0; i < user.interests.length; i++) {
-      Topic t = user.interests[i];
+    for(int i = 0; i < currentUser.interests.length; i++) {
+      Topic t = currentUser.interests[i];
       Filter f = Filter(name: "topics", operator: "any", value: Filter(name: "id", operator: "eq", value: t.id));
       interestsFilters.add(f);
     }
@@ -216,13 +247,13 @@ class RESTClient {
       objects.map((dynamic item) => Post.fromJson(item)).toList();
 
       print("Length: " + posts.length.toString());
-      return posts;
-      //return colleges;
+      
+      timelinePosts = posts;
     } else if (response.statusCode == 401) {
       // If the server did not return a 200 OK response,
       // then throw an exception.
-      print('Failed to login');
-      throw Exception('Failed to login');
+      print('Failed to get posts');
+      throw Exception('Failed to get posts');
     }
 
     return null;

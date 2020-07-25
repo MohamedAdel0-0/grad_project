@@ -137,6 +137,7 @@ class _LoginPageState extends State<LoginPage>{
 
   Widget buildTextField(String hintText, TextEditingController controller){
     return TextField(
+      controller: controller,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(
@@ -188,12 +189,20 @@ class _LoginPageState extends State<LoginPage>{
         String password = passwordController.text;
         print("email: " + email + " password: "+password);
         RESTClient.login(User(email: email, password: password ));
+        //ToDo: sleep for few seconds to wait for the response
+        Future.delayed(const Duration(seconds: 2));
+
         // If user information was wrong
-        if(RESTClient.currentUser == null)
-          Scaffold.of(context).showSnackBar(SnackBar(
-            content: Text("Can't Login!"),
-          ));
+        if(RESTClient.currentUser == null){
+            Scaffold.of(context).showSnackBar(SnackBar(
+                        content: Text("Can't Login!"),
+                      ));
+        }
+          
         else {
+          print("#### Get User TimeLine ####");
+          RESTClient.getUserTimeline(Duration(days: 30));
+          Future.delayed(const Duration(seconds: 2));
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
             return home();
           }));
