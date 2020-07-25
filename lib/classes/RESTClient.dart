@@ -10,10 +10,12 @@ import 'College.dart';
 import 'Department.dart';
 
 class RESTClient {
-  static const SERVER_URL = 'http://localhost:5000/';
-  static List<College> colleges;
+  static const SERVER_URL = 'http://10.0.2.2:5000/';
 
-  static Future<User> login(User user) async {
+  static List<College> colleges;
+  static User currentUser;
+
+  static void login(User user) async {
     var response = await http.post(
       Uri.encodeFull(SERVER_URL + 'api/login'),
       headers: <String, String>{
@@ -30,7 +32,7 @@ class RESTClient {
 
     if (response.statusCode == 200) {
       User user = User.fromJson(json.decode(response.body));
-      return user;
+      currentUser =  user;
     } else if (response.statusCode == 401) {
       // If the server did not return a 200 OK response,
       // then throw an exception.
@@ -41,7 +43,7 @@ class RESTClient {
     return null;
   }
 
-  static Future<User> register(User user) async {
+  static void register(User user) async {
     final response = await http.post(
       Uri.encodeFull(SERVER_URL + 'api/users'),
       headers: <String, String>{
@@ -54,7 +56,7 @@ class RESTClient {
     Map jsonResponse = json.decode(response.body);
     print(jsonResponse);
     if (response.statusCode == 201)
-      return User.fromJson(jsonResponse);
+      currentUser =  User.fromJson(jsonResponse);
     else if (response.statusCode == 400) {
       String errorMessage = jsonResponse['message'];
       print('Failed to register user: $errorMessage');

@@ -29,6 +29,10 @@ class LoginPage extends StatefulWidget{
 }
 
 class _LoginPageState extends State<LoginPage>{
+  final userNameController = TextEditingController();
+  final registrationNumberController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   bool _isHidden = true;
 
@@ -69,13 +73,13 @@ class _LoginPageState extends State<LoginPage>{
               ),
             ),
             SizedBox(height: 20.0,),
-            buildTextField("User Name"),
+            buildTextField("User Name", userNameController),
             SizedBox(height: 12.0,),
-            buildTextField("Registration Number"),
+            buildTextField("Registration Number", registrationNumberController),
             SizedBox(height: 12.0,),
-            buildTextField("Email"),
+            buildTextField("Email", emailController),
             SizedBox(height: 12.0,),
-            buildTextField("Password"),
+            buildTextField("Password", passwordController),
             SizedBox(height: 20.0,),
             buildButtonContainer(),
           ],
@@ -84,8 +88,9 @@ class _LoginPageState extends State<LoginPage>{
     );
   }
 
-  Widget buildTextField(String hintText){
+  Widget buildTextField(String hintText, TextEditingController controller){
     return TextField(
+      controller: controller,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(

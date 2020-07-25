@@ -1,6 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:grad_project/classes/RESTClient.dart';
+import 'package:grad_project/classes/User.dart';
 import 'forgetpss.dart';
 import 'home.dart';
 import 'interests.dart';
@@ -32,6 +35,8 @@ class LoginPage extends StatefulWidget{
 }
 
 class _LoginPageState extends State<LoginPage>{
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   bool _isHidden = true;
 
@@ -39,6 +44,14 @@ class _LoginPageState extends State<LoginPage>{
     setState(() {
       _isHidden = !_isHidden;
     });
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -74,9 +87,9 @@ class _LoginPageState extends State<LoginPage>{
             ),
 
             SizedBox(height: 15.0,),
-            buildTextField("Email @student.aast.edu\t\t   (Only)"),
+            buildTextField("Email @student.aast.edu\t\t   (Only)", emailController),
             SizedBox(height: 10.0,),
-            buildTextField("Password"),
+            buildTextField("Password", passwordController),
             SizedBox(height: 10.0,),
             Container(
               child: Row(
@@ -122,7 +135,7 @@ class _LoginPageState extends State<LoginPage>{
     );
   }
 
-  Widget buildTextField(String hintText){
+  Widget buildTextField(String hintText, TextEditingController controller){
     return TextField(
       decoration: InputDecoration(
         hintText: hintText,
@@ -171,33 +184,22 @@ class _LoginPageState extends State<LoginPage>{
       ),
       onTap: (){
 
-//        User
-//        var response = await http.post(
-//          Uri.encodeFull(SERVER_URL + 'api/login'),
-//          headers: <String, String>{
-//            'Content-Type': 'application/json; charset=UTF-8',
-//            'Accept': 'application/json'
-//          },
-//          body: jsonEncode(<String, String>{
-//            'email': user.email,
-//            'password': user.password,
-//          }),
-//        );
-//
-//        print(response.body);
-//
-//        if (response.statusCode == 200) {
-//          User user = User.fromJson(json.decode(response.body));
-//          return user;
-//        } else if (response.statusCode == 401) {
-//          // If the server did not return a 200 OK response,
-//          // then throw an exception.
-//          print('Failed to login');
-//          throw Exception('Failed to login');
-//        }
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-          return home();
-        }));
+        String email = emailController.text;
+        String password = passwordController.text;
+        print("email: " + email + " password: "+password);
+        RESTClient.login(User(email: email, password: password ));
+        // If user information was wrong
+        if(RESTClient.currentUser == null)
+          Scaffold.of(context).showSnackBar(SnackBar(
+            content: Text("Can't Login!"),
+          ));
+        else {
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+            return home();
+          }));
+        }
+
+
       },
     );
 
