@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:grad_project/screens/addmaterial.dart';
 import 'package:grad_project/screens/addpost.dart';
-import 'package:grad_project/screens/guide_me.dart';
+import 'package:grad_project/screens/guide.dart';
 import 'package:grad_project/screens/newmeeting.dart';
 import 'slide_bar.dart';
 import 'postForm.dart';
@@ -74,7 +74,7 @@ class home extends StatelessWidget {
                           ),
                           onPressed: () {
                             Navigator.push(context, MaterialPageRoute(builder: (context){
-                              return guide_me();
+                              return guide();
                             }));
                           },
                         ),

@@ -14,7 +14,7 @@ class post extends StatelessWidget {
   int v ;
   var date = new DateTime.now();
   final DateFormat dateFormat = DateFormat('yyyy-MM-dd HH:mm');
-   int vote ;
+   int vote = 0 ;
 
 
   post(this.userName, this.userImg, this.title,this.vote);
@@ -104,7 +104,7 @@ class voting extends StatefulWidget {
 
 class _posttState extends State<voting> {
 
-   int vote ;
+   int vote = 0;
 
   @override
   Widget build(BuildContext context) {
