@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:grad_project/screens/interests.dart';
+import 'package:grad_project/screens/my_gaps.dart';
+import 'package:grad_project/screens/my_material.dart';
+import 'package:grad_project/screens/my_meeting.dart';
 import 'package:grad_project/screens/profile.dart';
 import 'sideBarItem.dart';
 import 'package:rxdart/rxdart.dart';
@@ -141,6 +144,9 @@ class _slidebarState extends State<slide_bar> with SingleTickerProviderStateMixi
                         icon: Icons.assignment,
                         title: "My Material",
                         onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context){
+                            return my_material();
+                          }));
 
                         },
                       ),
@@ -149,7 +155,9 @@ class _slidebarState extends State<slide_bar> with SingleTickerProviderStateMixi
                         icon: Icons.local_library,
                         title: "My Meetings",
                         onTap: () {
-
+                          Navigator.push(context, MaterialPageRoute(builder: (context){
+                            return my_meeting();
+                          }));
                         },
                       ),
                       MenuItem(
@@ -165,7 +173,9 @@ class _slidebarState extends State<slide_bar> with SingleTickerProviderStateMixi
                         icon: Icons.calendar_today,
                         title: "My Gaps",
                         onTap: () {
-
+                          Navigator.push(context, MaterialPageRoute(builder: (context){
+                            return  my_gaps();
+                          }));
                         },
                       ),
 
