@@ -47,6 +47,6 @@ void main()  {
 	interests.add(Topic(id:2));
 	User u = User(interests: interests);
 
-	RESTClient.getUserTimeline(u, Duration(days: 365));
+	RESTClient.getUserTimeline(Duration(days: 365));
 
 }

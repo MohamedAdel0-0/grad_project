@@ -35,6 +35,8 @@ class LoginPage extends StatefulWidget{
 }
 
 class _LoginPageState extends State<LoginPage>{
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   bool _isHidden = true;
 
@@ -42,6 +44,14 @@ class _LoginPageState extends State<LoginPage>{
     setState(() {
       _isHidden = !_isHidden;
     });
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -77,9 +87,9 @@ class _LoginPageState extends State<LoginPage>{
             ),
 
             SizedBox(height: 15.0,),
-            buildTextField("Email @student.aast.edu\t\t   (Only)"),
+            buildTextField("Email @student.aast.edu\t\t   (Only)", emailController),
             SizedBox(height: 10.0,),
-            buildTextField("Password"),
+            buildTextField("Password", passwordController),
             SizedBox(height: 10.0,),
             Container(
               child: Row(
@@ -125,8 +135,9 @@ class _LoginPageState extends State<LoginPage>{
     );
   }
 
-  Widget buildTextField(String hintText){
+  Widget buildTextField(String hintText, TextEditingController controller){
     return TextField(
+      controller: controller,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(
@@ -199,9 +210,30 @@ class _LoginPageState extends State<LoginPage>{
 //          print('Failed to login');
 //         throw Exception('Failed to login');
 //        }
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-          return home();
+        String email = emailController.text;
+        String password = passwordController.text;
+        print("email: " + email + " password: "+password);
+        RESTClient.login(User(email: email, password: password ));
+        //ToDo: sleep for few seconds to wait for the response
+        Future.delayed(const Duration(seconds: 2));
+
+        // If user information was wrong
+        if(RESTClient.currentUser == null){
+            Scaffold.of(context).showSnackBar(SnackBar(
+                        content: Text("Can't Login!"),
+                      ));
+        }
+          
+        else {
+          print("#### Get User TimeLine ####");
+          RESTClient.getUserTimeline(Duration(days: 30));
+          Future.delayed(const Duration(seconds: 2));
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+            return home();
+          }));
+        }
       }));
+
       },
    );
 
