@@ -94,7 +94,7 @@ class home extends StatelessWidget {
                         height: 556,
                         width: 340,
                         child: ListView(
-                          children: posts /* <Widget>[
+                          children: <Widget>[
                             
                            
                             post("userName", null, "post body............",2),
@@ -102,7 +102,7 @@ class home extends StatelessWidget {
                             post("userName3", null, "post body3............",4),
                             post("userName4", null, "post body4............",1),
                             post("userName5", null, "post body5............",2),
-                            ], */
+                            ],
                         ),
                        ),
                      ),

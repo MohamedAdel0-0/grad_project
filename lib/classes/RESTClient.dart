@@ -10,7 +10,7 @@ import 'College.dart';
 import 'Department.dart';
 
 class RESTClient {
-  static const SERVER_URL = 'http://10.0.2.2:5000/';
+  static const SERVER_URL = 'http://9324de47736d.ngrok.io/' ;
   static User currentUser;
   static List<College> colleges;
   static List<Post> timelinePosts;

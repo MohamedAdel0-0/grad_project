@@ -153,7 +153,7 @@ class interest extends State <interests> {
                           children:[
                             Center(
                               child: Container(
-                                margin: EdgeInsets.only(left: 38, top: 20,bottom: 20),
+                                margin: EdgeInsets.only(left: 38, top: 30,bottom: 20),
                                 child: Text("Choose your Interests",
                                   textAlign: TextAlign.left,
                                   style: TextStyle(color: Colors.blue[900]
@@ -169,7 +169,7 @@ class interest extends State <interests> {
                           children: [
                             RaisedButton(
                               color: isButtonPressed ? Colors.white : Colors.blue,
-                              child: Text("data", style: TextStyle(
+                              child: Text("CS", style: TextStyle(
                                 color: isButtonPressed ? Colors.blue : Colors.white,
                                 fontSize: 18,
                               ),),
@@ -186,7 +186,7 @@ class interest extends State <interests> {
                             ),
                             RaisedButton(
                               color: isButtonPressed1 ? Colors.white : Colors.blue,
-                              child: Text("data1", style: TextStyle(
+                              child: Text("GM", style: TextStyle(
                                 color: isButtonPressed1 ? Colors.blue : Colors.white,
                                 fontSize: 18,
                               ),),
@@ -203,7 +203,7 @@ class interest extends State <interests> {
                             ),
                             RaisedButton(
                               color: isButtonPressed2 ? Colors.white : Colors.blue,
-                              child: Text("data2", style: TextStyle(
+                              child: Text("IS", style: TextStyle(
                                 color: isButtonPressed2 ? Colors.blue : Colors.white,
                                 fontSize: 18,
                               ),),
@@ -221,13 +221,13 @@ class interest extends State <interests> {
 
                           ],
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(height: 20,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             RaisedButton(
                               color: isButtonPressed3 ? Colors.white : Colors.blue,
-                              child: Text("data3", style: TextStyle(
+                              child: Text("SE", style: TextStyle(
                                 color: isButtonPressed3 ? Colors.blue : Colors.white,
                                 fontSize: 18,
                               ),),
@@ -261,7 +261,7 @@ class interest extends State <interests> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(height: 20,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -318,7 +318,7 @@ class interest extends State <interests> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(height: 20,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -358,63 +358,8 @@ class interest extends State <interests> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            RaisedButton(
-                              color: isButtonPressed10 ? Colors.white : Colors.blue,
-                              child: Text("data10", style: TextStyle(
-                                color: isButtonPressed10 ? Colors.blue : Colors.white,
-                                fontSize: 18,
-                              ),),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  side: BorderSide(
-                                    color: isButtonPressed10 ? Colors.blue : Colors.blue,)
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  isButtonPressed10 = !isButtonPressed10;
-                                });
-                              },
-                            ),
-                            RaisedButton(
-                              color: isButtonPressed11 ? Colors.white : Colors.blue,
-                              child: Text("data11", style: TextStyle(
-                                color: isButtonPressed11 ? Colors.blue : Colors.white,
-                                fontSize: 18,
-                              ),),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  side: BorderSide(
-                                    color: isButtonPressed11 ? Colors.blue : Colors.blue,)
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  isButtonPressed11 = !isButtonPressed11;
-                                });
-                              },
-                            ),
-                            RaisedButton(
-                              color: isButtonPressed12 ? Colors.white : Colors.blue,
-                              child: Text("data12", style: TextStyle(
-                                color: isButtonPressed12 ? Colors.blue : Colors.white,
-                                fontSize: 18,
-                              ),),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  side: BorderSide(
-                                    color: isButtonPressed12 ? Colors.blue : Colors.blue,)
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  isButtonPressed12 = !isButtonPressed12;
-                                });
-                              },
-                            ),
-                          ],
-                        ),
+                        SizedBox(height: 20,),
+
                         Container(
                           margin: EdgeInsets.only(left: 35,right: 35,top: 15),
                           child: RaisedButton(
